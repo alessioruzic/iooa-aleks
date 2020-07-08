@@ -11,6 +11,7 @@
 
         <!-- Styles -->
         <style>
+            
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -41,7 +42,8 @@
             }
 
             .content {
-                text-align: center;
+                text-align: center; 
+                position: relative;
             }
 
             .title {
@@ -61,40 +63,48 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            img {
+            width: 100%;
+            height: auto;
+            }
+            
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        
+            
+            <div class="content">
             @if (Route::has('login'))
                 <div class="top-right links">
+                    
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        @if(Auth::user()->role_id == 2)
+                        <a style="color:white; font-size:1vw;" href="#">Prijava gosta na rezervaciju</a>
+                        <a style="color:white; font-size:1vw;" href="{{ url('/api/pretrazivanje/rezervacije') }}">Pregledi boravka</a>
+                        <a style="color:white; font-size:1vw;" href="{{ url('/index') }}">Pretaživanje boravka</a>
+                        <a style="color:white; font-size:1vw;" href="{{ url('/logout') }}">Odjava</a>
+                        @elseif(Auth::user()->role_id == 1)    
+                        <a style="color:white; font-size:2vw;" href="{{ url('/cmsadmin/index') }}">ADMIN CMS</a>
+                        <a style="color:white; font-size:2vw;" href="{{ url('/logout') }}">Odjava</a>
+                        @else
+                        <a style="color:white; font-size:2vw;" href="{{ url('/cmskontrola/index') }}">CONTROL CMS</a>
+                        <a style="color:white; font-size:2vw;" href="{{ url('/logout') }}">Odjava</a>
+                        @endif
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a style="color:white; font-size:2vw;"href="{{ route('login') }}">Prijava</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a style="color:white; font-size:2vw;"href="{{ route('register') }}">Registracija</a>
                         @endif
                     @endauth
+                    
                 </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            <h1 style="font-size:2vw;position: absolute;margin-left: 10%;color:white;">Dobrodošli u aplikaciju!</h1>
+            <h1 style="font-size:5vw;position: absolute;margin-left: 10%;color:white;">AUTOKAMP</h1>     
+                <img src="img/polari.jpg" width="460" height="345">  
             </div>
         </div>
+
     </body>
 </html>
