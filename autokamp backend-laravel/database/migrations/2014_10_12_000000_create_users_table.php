@@ -19,8 +19,20 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('surname');
+            $table->string('oib');
+            $table->string('dateBorn');
+            $table->foreignId('kategorijaId')->nullable();
+            $table->foreignId('role_id')->default(2);
+            $table->string('api_token', 80)
+                        ->unique()
+                        ->nullable()
+                        ->default(null);
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('kategorijaId')->references('id')->on('gost_kategorijas');
         });
     }
 
