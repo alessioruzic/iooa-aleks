@@ -10,13 +10,15 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','surname','oib','dateBorn','role_id','kategorijaId','id',
     ];
 
     /**
@@ -36,4 +38,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin(){
+        return $this->role == 1;
+    }
+
+    public function rola(){
+        return $this->BelongsTo(Role::class, 'role_id');
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
 }
