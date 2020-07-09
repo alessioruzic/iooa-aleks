@@ -1,0 +1,23 @@
+Unutar .rar su sve datoteke osim vendor i node_modules.
+
+1. instalirati XAMPP Server (https://www.apachefriends.org/) te kreirati na njemu bazu podataka laravel
+2. instalirati Laravel unutar Visual Studio Code (https://laravel.com/docs/7.x/installation)
+	2.1. composer global require laravel/installer
+	2.2. laravel new projekt
+	2.3. php artisan serve (unutar komandne linije) za pokretanje localhostinga
+3. za kreiranje tablica u bazi podataka
+	php artisan migrate:fresh
+4. za lakše testiranje aplikacije dodali smo Seedere(služe za popuniti bazu podataka podacima)
+	php artisan db:seed
+5. nakon pokretanja seedera imate kreirane korisnike: 
+	(Admin - student1@veleri.hr:12345678 i Kontrolor - student2@gmail.hr:12345678
+
+
+Unutar app\ - nalaze se Modeli
+Unutar app\http - nalaze se Controlleri i Middleware
+Unutar routes\ - nalaze se web i api rute
+Unutar resources\views\ - nalaze se pogledi
+Unutar database\migrations - nalaze se migracije za kreiranje tablica u bazi podataka
+Unutar database\seeds - nalaze se seederi za popunjavanje baze podataka realnim podacima
+.env file služi za podešavanje raznih postavki - povezivanje sa bazom podataka...
+Unutar app\Http\Kernel - definirane rute za middleware
