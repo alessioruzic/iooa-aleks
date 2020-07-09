@@ -52,12 +52,6 @@ class ParcelaController extends Controller
             'idOpisParcela'=>$request->opis,
             'image'=> $path,
         ]);
-        GostParcela::create([ //ovo smo dodali jer nam se krivo prikazivali podaci preko querya, ako nema gost parcele dalo bi parceli id null
-            'idParcela'=>$parcela->id,
-            'idGost'=>1,
-            'datumDolazak'=>'0000-00-00',
-            'datumOdlazak'=>'0000-00-00',
-        ]);
         return redirect(route('parcela.index'));
     }
 
